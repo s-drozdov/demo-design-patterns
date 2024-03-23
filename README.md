@@ -17,3 +17,14 @@ make
 make up
 make enter
 ```
+
+Реализация
+------------
+
+### Модуль creational
+
+#### Фабричный метод.
+Тематика: создание блюд японской кухни.
+```bash
+php yii creational/factory-method
+```

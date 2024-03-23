@@ -22,6 +22,11 @@ $config = [
         ],
     ],
     'controllerNamespace' => 'app\commands',
+    'modules' => [
+        'creational' => [
+            'class' => 'app\modules\creational\Module',
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
