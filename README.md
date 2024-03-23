@@ -18,13 +18,20 @@ make up
 make enter
 ```
 
-Реализация
-------------
+# Реализация
 
-### Модуль creational
+<p align="right"><i>...если что, работает автокомплит.</i></p>
 
-#### Фабричный метод.
-Тематика: создание блюд японской кухни.
+## Модуль _creational_. Порождающие паттерны.
+
+### Фабричный метод.
+<b><u>Тематика:</u></b> [блюда японской кухни](https://github.com/s-drozdov/demo-design-patterns/blob/main/modules/creational/commands/FactoryMethodController.php).
 ```bash
 php yii creational/factory-method
+```
+
+### Абстрактная фабрика.
+<b><u>Тематика:</u></b> [туристический бот](https://github.com/s-drozdov/demo-design-patterns/blob/main/modules/creational/commands/AbstractFactoryController.php).
+```bash
+php yii creational/abstract-factory
 ```
