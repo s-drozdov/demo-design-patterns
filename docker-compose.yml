@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: ./docker/php-fpm
+            target: '${BUILD_TARGET}'
+            args:
+                APP_NAME: ${APP_NAME}
+        container_name: ${APP_NAME}_app
+        volumes:
+            - .:/var/www/${APP_NAME}
+            - ./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini
+        environment:
+            PHP_IDE_CONFIG: "serverName=${APP_NAME}"
+            TZ: '${TZ}'
+        extra_hosts:
+            - host.docker.internal:host-gateway
+#        restart: always
