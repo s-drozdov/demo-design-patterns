@@ -5,7 +5,7 @@
 УСТАНОВКА
 ------------
 
-Из корня проекта с хост-машины запустите:
+Из директории проекта на хост-машине запустите:
 ```bash
 make
 ```
@@ -34,4 +34,16 @@ php yii creational/factory-method
 <b><u>Тематика:</u></b> [туристический бот](https://github.com/s-drozdov/demo-design-patterns/blob/main/modules/creational/commands/AbstractFactoryController.php).
 ```bash
 php yii creational/abstract-factory
+```
+
+### Строитель. Директор.
+<b><u>Тематика:</u></b> [открываем пиццерию, генератор меню](https://github.com/s-drozdov/demo-design-patterns/blob/main/modules/creational/commands/BuilderController.php).
+
+Выпекаем рандомную пиццу:
+```bash
+php yii creational/builder
+```
+Просмотр отчета по всем рецептам для пиццы стандартного размера: 
+```bash
+php yii creational/builder/get-all
 ```
