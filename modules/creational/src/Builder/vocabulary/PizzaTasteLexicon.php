@@ -7,6 +7,9 @@ use app\modules\creational\src\Builder\aggregates\LexiconExpression;
 
 final readonly class PizzaTasteLexicon
 {
+    /**
+     * @return LexiconExpression[]
+     */
     public function getVocabulary(): array
     {
         return [
@@ -32,7 +35,7 @@ final readonly class PizzaTasteLexicon
             ),
             new LexiconExpression(
                 declension: DeclensionTemplate::Genitive,
-                expression: 'остается приятное послевкусие за счет едва уловимой консистенции от ' . DeclensionTemplate::Genitive->value,
+                expression: 'остается приятное послевкусие за счет едва уловимой консистенции ' . DeclensionTemplate::Genitive->value,
             ),
             new LexiconExpression(
                 declension: DeclensionTemplate::Genitive,

@@ -4,6 +4,7 @@ namespace app\modules\creational\src\Builder\builders;
 
 use app\modules\creational\src\Builder\dough\Thin;
 use app\modules\creational\src\Builder\aggregates\Pizza;
+use app\modules\creational\src\Builder\aggregates\Valuation;
 use app\modules\creational\src\Builder\enums\FormFactorRate;
 use app\modules\creational\src\Builder\contracts\IngredientInterface;
 use app\modules\creational\src\Builder\containers\IngredientContainer;
@@ -44,7 +45,7 @@ final class PizzaBuilder implements PizzaBuilderInterface
 
     public function addIngredient(IngredientInterface $ingredient, int $weightGrams): PizzaBuilderInterface
     {
-        $this->ingredients->put(ingredient: $ingredient, weightGrams: $weightGrams);
+        $this->ingredients->attach(new Valuation(type: $ingredient, weightInGrams: $weightGrams));
         return $this;
     }
 
@@ -54,7 +55,7 @@ final class PizzaBuilder implements PizzaBuilderInterface
             recipeName: $this->recipeName ?? self::DEFAULT_RECIPE_NAME,
             formFactorRate: $this->formFactorRate ?? FormFactorRate::Medium->value,
             basement: $this->basement ?? new Thin(),
-            ingredients: $this->ingredients->getAll(),
+            ingredients: iterator_to_array($this->ingredients),
         );
     }
 }

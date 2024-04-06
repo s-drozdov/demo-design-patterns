@@ -2,36 +2,33 @@
 
 namespace app\modules\creational\src\Builder\containers;
 
-use app\modules\creational\src\Builder\helpers\ArrayHelper;
+use SplObjectStorage;
 use app\modules\creational\src\Builder\aggregates\Valuation;
-use app\modules\creational\src\Builder\contracts\IngredientInterface;
 
-/**
- * @property Valuation[] $ingredients
- */
-final class IngredientContainer
+final class IngredientContainer extends SplObjectStorage
 {
-    private array $ingredients = [];
-
-    public function put(IngredientInterface $ingredient, int $weightGrams): void
+    /**
+     * @param Valuation $object
+     * @param null $info
+     */
+    public function attach($object, mixed $info = null): void
     {
-        $foundKey = (new ArrayHelper($this->ingredients))->findKeyByValue(
-            function ($currentIngredient) use ($ingredient) {
-                return $currentIngredient->type::class === $ingredient::class;
-            },
-        );
-
-        if ($foundKey !== null) {
-            $lastIngredientState = $this->ingredients[$foundKey];
-            $lastIngredientState->weightInGrams += $weightGrams;
-            $this->ingredients[$foundKey] = $lastIngredientState;
-        } else {
-            $this->ingredients[] = new Valuation(type: $ingredient, weightInGrams: $weightGrams);
+        if ($this->contains($object)) {
+            /** @var Valuation $valuation */
+            $valuation = $this->current();
+            $valuation->weightInGrams += $object->weightInGrams;
+            return;
         }
+
+        parent::attach($object, $info);
     }
 
-    public function getAll(): array
+    /**
+     * @param Valuation $object
+     * @return string
+     */
+    public function getHash($object): string
     {
-        return $this->ingredients;
+        return $object->type::class;
     }
 }
